@@ -1,213 +1,121 @@
 // port-lint: source slice.rs
 package io.github.kotlinmania.half
 
-import kotlin.jvm.JvmName
-
 public sealed interface SealedHalfFloatSlice
 
 public sealed interface SealedHalfBitsSlice
 
-@JvmName("f16ArrayReinterpretCast")
-public fun Array<F16>.reinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
+public fun Array<F16>.f16ArrayReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
 
-@JvmName("f16ListReinterpretCast")
-public fun List<F16>.reinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
+public fun List<F16>.f16ListReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
 
-@JvmName("f16ArrayReinterpretCastMut")
-public fun Array<F16>.reinterpretCastMut(): UShortArray = UShortArray(size) { this[it].rawBits }
+public fun Array<F16>.f16ArrayReinterpretCastMut(): UShortArray = UShortArray(size) { this[it].rawBits }
 
-@JvmName("f16ArrayConvertFromF32Slice")
-public fun Array<F16>.convertFromF32Slice(src: FloatArray) {
+public fun Array<F16>.f16ArrayConvertFromF32Slice(src: FloatArray) {
     require(size == src.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         this[i] = F16.fromF32(src[i])
     }
 }
 
-@JvmName("f16ListConvertFromF32Slice")
-public fun MutableList<F16>.convertFromF32Slice(src: FloatArray) {
-    require(size == src.size) { "destination and source slices have different lengths" }
-    for (i in indices) {
-        this[i] = F16.fromF32(src[i])
-    }
-}
-
-@JvmName("f16ListConvertFromF32List")
-public fun MutableList<F16>.convertFromF32Slice(src: List<Float>) {
-    require(size == src.size) { "destination and source slices have different lengths" }
-    for (i in indices) {
-        this[i] = F16.fromF32(src[i])
-    }
-}
-
-@JvmName("f16ArrayConvertFromF64Slice")
-public fun Array<F16>.convertFromF64Slice(src: DoubleArray) {
+public fun Array<F16>.f16ArrayConvertFromF64Slice(src: DoubleArray) {
     require(size == src.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         this[i] = F16.fromF64(src[i])
     }
 }
 
-@JvmName("f16ListConvertFromF64Slice")
-public fun MutableList<F16>.convertFromF64Slice(src: DoubleArray) {
-    require(size == src.size) { "destination and source slices have different lengths" }
-    for (i in indices) {
-        this[i] = F16.fromF64(src[i])
-    }
-}
-
-@JvmName("f16ArrayConvertToF32Slice")
-public fun Array<F16>.convertToF32Slice(dst: FloatArray) {
+public fun Array<F16>.f16ArrayConvertToF32Slice(dst: FloatArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         dst[i] = this[i].toF32()
     }
 }
 
-@JvmName("f16ListConvertToF32Slice")
-public fun List<F16>.convertToF32Slice(dst: FloatArray) {
+public fun List<F16>.f16ListConvertToF32Slice(dst: FloatArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         dst[i] = this[i].toF32()
     }
 }
 
-@JvmName("f16ListConvertToF32List")
-public fun List<F16>.convertToF32Slice(dst: MutableList<Float>) {
-    require(size == dst.size) { "destination and source slices have different lengths" }
-    for (i in indices) {
-        dst[i] = this[i].toF32()
-    }
-}
-
-@JvmName("f16ArrayConvertToF64Slice")
-public fun Array<F16>.convertToF64Slice(dst: DoubleArray) {
+public fun Array<F16>.f16ArrayConvertToF64Slice(dst: DoubleArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         dst[i] = this[i].toF64()
     }
 }
 
-@JvmName("f16ListConvertToF64Slice")
-public fun List<F16>.convertToF64Slice(dst: DoubleArray) {
+public fun List<F16>.f16ListConvertToF64Slice(dst: DoubleArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         dst[i] = this[i].toF64()
     }
 }
 
-@JvmName("f16ArrayToF32Vec")
-public fun Array<F16>.toF32Vec(): MutableList<Float> = MutableList(size) { this[it].toF32() }
+public fun Array<F16>.f16ArrayToF32Vec(): List<Float> = List(size) { this[it].toF32() }
 
-@JvmName("f16ListToF32Vec")
-public fun List<F16>.toF32Vec(): MutableList<Float> = MutableList(size) { this[it].toF32() }
+public fun List<F16>.f16ListToF32Vec(): List<Float> = List(size) { this[it].toF32() }
 
-@JvmName("f16ArrayToF64Vec")
-public fun Array<F16>.toF64Vec(): MutableList<Double> = MutableList(size) { this[it].toF64() }
+public fun Array<F16>.f16ArrayToF64Vec(): List<Double> = List(size) { this[it].toF64() }
 
-@JvmName("f16ListToF64Vec")
-public fun List<F16>.toF64Vec(): MutableList<Double> = MutableList(size) { this[it].toF64() }
+public fun List<F16>.f16ListToF64Vec(): List<Double> = List(size) { this[it].toF64() }
 
-@JvmName("bf16ArrayReinterpretCast")
-public fun Array<BF16>.reinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
+public fun Array<BF16>.bf16ArrayReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
 
-@JvmName("bf16ListReinterpretCast")
-public fun List<BF16>.reinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
+public fun List<BF16>.bf16ListReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
 
-@JvmName("bf16ArrayReinterpretCastMut")
-public fun Array<BF16>.reinterpretCastMut(): UShortArray = UShortArray(size) { this[it].rawBits }
+public fun Array<BF16>.bf16ArrayReinterpretCastMut(): UShortArray = UShortArray(size) { this[it].rawBits }
 
-@JvmName("bf16ArrayConvertFromF32Slice")
-public fun Array<BF16>.convertFromF32Slice(src: FloatArray) {
+public fun Array<BF16>.bf16ArrayConvertFromF32Slice(src: FloatArray) {
     require(size == src.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         this[i] = BF16.fromF32(src[i])
     }
 }
 
-@JvmName("bf16ListConvertFromF32Slice")
-public fun MutableList<BF16>.convertFromF32Slice(src: FloatArray) {
-    require(size == src.size) { "destination and source slices have different lengths" }
-    for (i in indices) {
-        this[i] = BF16.fromF32(src[i])
-    }
-}
-
-@JvmName("bf16ListConvertFromF32List")
-public fun MutableList<BF16>.convertFromF32Slice(src: List<Float>) {
-    require(size == src.size) { "destination and source slices have different lengths" }
-    for (i in indices) {
-        this[i] = BF16.fromF32(src[i])
-    }
-}
-
-@JvmName("bf16ArrayConvertFromF64Slice")
-public fun Array<BF16>.convertFromF64Slice(src: DoubleArray) {
+public fun Array<BF16>.bf16ArrayConvertFromF64Slice(src: DoubleArray) {
     require(size == src.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         this[i] = BF16.fromF64(src[i])
     }
 }
 
-@JvmName("bf16ListConvertFromF64Slice")
-public fun MutableList<BF16>.convertFromF64Slice(src: DoubleArray) {
-    require(size == src.size) { "destination and source slices have different lengths" }
-    for (i in indices) {
-        this[i] = BF16.fromF64(src[i])
-    }
-}
-
-@JvmName("bf16ArrayConvertToF32Slice")
-public fun Array<BF16>.convertToF32Slice(dst: FloatArray) {
+public fun Array<BF16>.bf16ArrayConvertToF32Slice(dst: FloatArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         dst[i] = this[i].toF32()
     }
 }
 
-@JvmName("bf16ListConvertToF32Slice")
-public fun List<BF16>.convertToF32Slice(dst: FloatArray) {
+public fun List<BF16>.bf16ListConvertToF32Slice(dst: FloatArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         dst[i] = this[i].toF32()
     }
 }
 
-@JvmName("bf16ListConvertToF32List")
-public fun List<BF16>.convertToF32Slice(dst: MutableList<Float>) {
-    require(size == dst.size) { "destination and source slices have different lengths" }
-    for (i in indices) {
-        dst[i] = this[i].toF32()
-    }
-}
-
-@JvmName("bf16ArrayConvertToF64Slice")
-public fun Array<BF16>.convertToF64Slice(dst: DoubleArray) {
+public fun Array<BF16>.bf16ArrayConvertToF64Slice(dst: DoubleArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         dst[i] = this[i].toF64()
     }
 }
 
-@JvmName("bf16ListConvertToF64Slice")
-public fun List<BF16>.convertToF64Slice(dst: DoubleArray) {
+public fun List<BF16>.bf16ListConvertToF64Slice(dst: DoubleArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
         dst[i] = this[i].toF64()
     }
 }
 
-@JvmName("bf16ArrayToF32Vec")
-public fun Array<BF16>.toF32Vec(): MutableList<Float> = MutableList(size) { this[it].toF32() }
+public fun Array<BF16>.bf16ArrayToF32Vec(): List<Float> = List(size) { this[it].toF32() }
 
-@JvmName("bf16ListToF32Vec")
-public fun List<BF16>.toF32Vec(): MutableList<Float> = MutableList(size) { this[it].toF32() }
+public fun List<BF16>.bf16ListToF32Vec(): List<Float> = List(size) { this[it].toF32() }
 
-@JvmName("bf16ArrayToF64Vec")
-public fun Array<BF16>.toF64Vec(): MutableList<Double> = MutableList(size) { this[it].toF64() }
+public fun Array<BF16>.bf16ArrayToF64Vec(): List<Double> = List(size) { this[it].toF64() }
 
-@JvmName("bf16ListToF64Vec")
-public fun List<BF16>.toF64Vec(): MutableList<Double> = MutableList(size) { this[it].toF64() }
+public fun List<BF16>.bf16ListToF64Vec(): List<Double> = List(size) { this[it].toF64() }
 
 public inline fun <reified H : SealedHalf> UShortArray.reinterpretCast(): Array<H> =
     when (H::class) {

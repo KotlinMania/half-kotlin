@@ -1,9 +1,6 @@
 // port-lint: source bfloat.rs
 package io.github.kotlinmania.half
 
-import kotlin.jvm.JvmName
-import kotlinx.serialization.Serializable
-
 /**
  * A 16-bit floating point type implementing the `bfloat16` format.
  *
@@ -11,7 +8,6 @@ import kotlinx.serialization.Serializable
  * `binary32`, a.k.a `Float`. [BF16] has approximately the same dynamic range as `Float` by
  * having a lower precision than [F16].
  */
-@Serializable
 public data class BF16(public val rawBits: UShort = 0u) : Comparable<BF16>, SealedHalf {
     public val bits: Short
         get() = rawBits.toShort()
@@ -203,16 +199,16 @@ public data class BF16(public val rawBits: UShort = 0u) : Comparable<BF16>, Seal
     override fun toString(): String = toF32().toString()
 
     public companion object {
-        @JvmName("invokeShort")
-        public operator fun invoke(bits: Short): BF16 = BF16(bits.toUShort())
+        public operator fun invoke(bits: UShort): BF16 = BF16(bits)
+
+        public fun invokeShort(bits: Short): BF16 = BF16(bits.toUShort())
 
         /**
          * Constructs a [BF16] value from the raw bits.
          */
         public fun fromBits(bits: UShort): BF16 = BF16(bits)
 
-        @JvmName("fromShortBits")
-        public fun fromBits(bits: Short): BF16 = BF16(bits.toUShort())
+        public fun fromShortBits(bits: Short): BF16 = BF16(bits.toUShort())
 
         /**
          * Constructs a [BF16] value from a 32-bit floating point value.

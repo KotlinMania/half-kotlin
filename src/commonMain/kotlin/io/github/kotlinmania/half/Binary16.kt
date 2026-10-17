@@ -1,9 +1,6 @@
 // port-lint: source binary16.rs
 package io.github.kotlinmania.half
 
-import kotlin.jvm.JvmName
-import kotlinx.serialization.Serializable
-
 /**
  * Floating-point category matching Rust `core::num::FpCategory`.
  */
@@ -22,7 +19,6 @@ public enum class FpCategory {
  * This 16-bit floating point type is intended for efficient storage where the full range and
  * precision of a larger floating point value is not required.
  */
-@Serializable
 public data class F16(public val rawBits: UShort = 0u) : Comparable<F16>, SealedHalf {
     public val bits: Short
         get() = rawBits.toShort()
@@ -214,16 +210,16 @@ public data class F16(public val rawBits: UShort = 0u) : Comparable<F16>, Sealed
     override fun toString(): String = toF32().toString()
 
     public companion object {
-        @JvmName("invokeShort")
-        public operator fun invoke(bits: Short): F16 = F16(bits.toUShort())
+        public operator fun invoke(bits: UShort): F16 = F16(bits)
+
+        public fun invokeShort(bits: Short): F16 = F16(bits.toUShort())
 
         /**
          * Constructs a 16-bit floating point value from the raw bits.
          */
         public fun fromBits(bits: UShort): F16 = F16(bits)
 
-        @JvmName("fromShortBits")
-        public fun fromBits(bits: Short): F16 = F16(bits.toUShort())
+        public fun fromShortBits(bits: Short): F16 = F16(bits.toUShort())
 
         /**
          * Constructs a 16-bit floating point value from a 32-bit floating point value.
