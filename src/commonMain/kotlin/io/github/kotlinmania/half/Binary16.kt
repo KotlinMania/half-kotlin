@@ -323,6 +323,3 @@ public data class F16(public val rawBits: UShort = 0u) : Comparable<F16>, Sealed
         public val SQRT_2: F16 = F16(0x3DA8u)
     }
 }
-
-public typealias f16 = F16
-public typealias Float16 = F16

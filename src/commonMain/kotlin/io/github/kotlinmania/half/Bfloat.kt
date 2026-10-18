@@ -322,7 +322,3 @@ public data class BF16(public val rawBits: UShort = 0u) : Comparable<BF16>, Seal
         public val SQRT_2: BF16 = BF16(0x3FB5u)
     }
 }
-
-public typealias bf16 = BF16
-public typealias Bf16 = BF16
-public typealias BFloat16 = BF16
