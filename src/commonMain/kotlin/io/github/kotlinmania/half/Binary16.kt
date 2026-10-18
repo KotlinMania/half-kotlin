@@ -19,7 +19,10 @@ public enum class FpCategory {
  * This 16-bit floating point type is intended for efficient storage where the full range and
  * precision of a larger floating point value is not required.
  */
-public data class F16(public val rawBits: UShort = 0u) : Comparable<F16>, SealedHalf {
+public data class F16(
+    public val rawBits: UShort = 0u,
+) : Comparable<F16>,
+    SealedHalf {
     public val bits: Short
         get() = rawBits.toShort()
 
@@ -32,19 +35,21 @@ public data class F16(public val rawBits: UShort = 0u) : Comparable<F16>, Sealed
      * Returns the memory representation of the underlying bit representation as a byte array in
      * little-endian byte order.
      */
-    public fun toLeBytes(): ByteArray = byteArrayOf(
-        (rawBits.toInt() and 0xFF).toByte(),
-        ((rawBits.toInt() ushr 8) and 0xFF).toByte(),
-    )
+    public fun toLeBytes(): ByteArray =
+        byteArrayOf(
+            (rawBits.toInt() and 0xFF).toByte(),
+            ((rawBits.toInt() ushr 8) and 0xFF).toByte(),
+        )
 
     /**
      * Returns the memory representation of the underlying bit representation as a byte array in
      * big-endian (network) byte order.
      */
-    public fun toBeBytes(): ByteArray = byteArrayOf(
-        ((rawBits.toInt() ushr 8) and 0xFF).toByte(),
-        (rawBits.toInt() and 0xFF).toByte(),
-    )
+    public fun toBeBytes(): ByteArray =
+        byteArrayOf(
+            ((rawBits.toInt() ushr 8) and 0xFF).toByte(),
+            (rawBits.toInt() and 0xFF).toByte(),
+        )
 
     /**
      * Returns the memory representation of the underlying bit representation as a byte array in
@@ -119,11 +124,12 @@ public data class F16(public val rawBits: UShort = 0u) : Comparable<F16>, Sealed
     /**
      * Returns a number that represents the sign of `this`.
      */
-    public fun signum(): F16 = when {
-        isNan() -> this
-        (rawBits.toUInt() and 0x8000u) != 0u -> NEG_ONE
-        else -> ONE
-    }
+    public fun signum(): F16 =
+        when {
+            isNan() -> this
+            (rawBits.toUInt() and 0x8000u) != 0u -> NEG_ONE
+            else -> ONE
+        }
 
     /**
      * Returns `true` if and only if `this` has a positive sign.

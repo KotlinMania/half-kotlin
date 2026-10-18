@@ -30,11 +30,12 @@ internal fun f64ToBf16(value: Double): UShort {
 
     // Check for all exponent bits being set, which is Infinity or NaN
     if (exp == 0x7FF0_0000u) {
-        val nanBit = if (man == 0u && valueBits.toUInt() == 0u) {
-            0u
-        } else {
-            0x0040u
-        }
+        val nanBit =
+            if (man == 0u && valueBits.toUInt() == 0u) {
+                0u
+            } else {
+                0x0040u
+            }
         return ((sign shr 16) or 0x7F80u or nanBit or (man shr 13)).toUShort()
     }
 
@@ -74,13 +75,12 @@ internal fun f64ToBf16(value: Double): UShort {
     }
 }
 
-internal fun bf16ToF32(i: UShort): Float {
-    return if ((i.toUInt() and 0x7FFFu) > 0x7F80u) {
+internal fun bf16ToF32(i: UShort): Float =
+    if ((i.toUInt() and 0x7FFFu) > 0x7F80u) {
         Float.fromBits(((i.toUInt() or 0x0040u) shl 16).toInt())
     } else {
         Float.fromBits((i.toUInt() shl 16).toInt())
     }
-}
 
 internal fun bf16ToF64(i: UShort): Double {
     if ((i.toUInt() and 0x7FFFu) == 0u) {
