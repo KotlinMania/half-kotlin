@@ -119,11 +119,12 @@ internal fun f64ToF16Fallback(value: Double): UShort {
     val man = x and 0x000F_FFFFu
 
     if (exp == 0x7FF0_0000u) {
-        val nanBit = if (man == 0u && valueBits.toUInt() == 0u) {
-            0u
-        } else {
-            0x0200u
-        }
+        val nanBit =
+            if (man == 0u && valueBits.toUInt() == 0u) {
+                0u
+            } else {
+                0x0200u
+            }
         return ((sign shr 16) or 0x7C00u or nanBit or (man shr 10)).toUShort()
     }
 
@@ -222,77 +223,85 @@ internal fun f16ToF64Fallback(i: UShort): Double {
     return Double.fromBits((sign or exp or man).toLong())
 }
 
-internal fun f16x4ToF32x4Fallback(v: UShortArray): FloatArray = floatArrayOf(
-    f16ToF32Fallback(v[0]),
-    f16ToF32Fallback(v[1]),
-    f16ToF32Fallback(v[2]),
-    f16ToF32Fallback(v[3]),
-)
+internal fun f16x4ToF32x4Fallback(v: UShortArray): FloatArray =
+    floatArrayOf(
+        f16ToF32Fallback(v[0]),
+        f16ToF32Fallback(v[1]),
+        f16ToF32Fallback(v[2]),
+        f16ToF32Fallback(v[3]),
+    )
 
-internal fun f32x4ToF16x4Fallback(v: FloatArray): UShortArray = ushortArrayOf(
-    f32ToF16Fallback(v[0]),
-    f32ToF16Fallback(v[1]),
-    f32ToF16Fallback(v[2]),
-    f32ToF16Fallback(v[3]),
-)
+internal fun f32x4ToF16x4Fallback(v: FloatArray): UShortArray =
+    ushortArrayOf(
+        f32ToF16Fallback(v[0]),
+        f32ToF16Fallback(v[1]),
+        f32ToF16Fallback(v[2]),
+        f32ToF16Fallback(v[3]),
+    )
 
-internal fun f16x4ToF64x4Fallback(v: UShortArray): DoubleArray = doubleArrayOf(
-    f16ToF64Fallback(v[0]),
-    f16ToF64Fallback(v[1]),
-    f16ToF64Fallback(v[2]),
-    f16ToF64Fallback(v[3]),
-)
+internal fun f16x4ToF64x4Fallback(v: UShortArray): DoubleArray =
+    doubleArrayOf(
+        f16ToF64Fallback(v[0]),
+        f16ToF64Fallback(v[1]),
+        f16ToF64Fallback(v[2]),
+        f16ToF64Fallback(v[3]),
+    )
 
-internal fun f64x4ToF16x4Fallback(v: DoubleArray): UShortArray = ushortArrayOf(
-    f64ToF16Fallback(v[0]),
-    f64ToF16Fallback(v[1]),
-    f64ToF16Fallback(v[2]),
-    f64ToF16Fallback(v[3]),
-)
+internal fun f64x4ToF16x4Fallback(v: DoubleArray): UShortArray =
+    ushortArrayOf(
+        f64ToF16Fallback(v[0]),
+        f64ToF16Fallback(v[1]),
+        f64ToF16Fallback(v[2]),
+        f64ToF16Fallback(v[3]),
+    )
 
-internal fun f16x8ToF32x8Fallback(v: UShortArray): FloatArray = floatArrayOf(
-    f16ToF32Fallback(v[0]),
-    f16ToF32Fallback(v[1]),
-    f16ToF32Fallback(v[2]),
-    f16ToF32Fallback(v[3]),
-    f16ToF32Fallback(v[4]),
-    f16ToF32Fallback(v[5]),
-    f16ToF32Fallback(v[6]),
-    f16ToF32Fallback(v[7]),
-)
+internal fun f16x8ToF32x8Fallback(v: UShortArray): FloatArray =
+    floatArrayOf(
+        f16ToF32Fallback(v[0]),
+        f16ToF32Fallback(v[1]),
+        f16ToF32Fallback(v[2]),
+        f16ToF32Fallback(v[3]),
+        f16ToF32Fallback(v[4]),
+        f16ToF32Fallback(v[5]),
+        f16ToF32Fallback(v[6]),
+        f16ToF32Fallback(v[7]),
+    )
 
-internal fun f32x8ToF16x8Fallback(v: FloatArray): UShortArray = ushortArrayOf(
-    f32ToF16Fallback(v[0]),
-    f32ToF16Fallback(v[1]),
-    f32ToF16Fallback(v[2]),
-    f32ToF16Fallback(v[3]),
-    f32ToF16Fallback(v[4]),
-    f32ToF16Fallback(v[5]),
-    f32ToF16Fallback(v[6]),
-    f32ToF16Fallback(v[7]),
-)
+internal fun f32x8ToF16x8Fallback(v: FloatArray): UShortArray =
+    ushortArrayOf(
+        f32ToF16Fallback(v[0]),
+        f32ToF16Fallback(v[1]),
+        f32ToF16Fallback(v[2]),
+        f32ToF16Fallback(v[3]),
+        f32ToF16Fallback(v[4]),
+        f32ToF16Fallback(v[5]),
+        f32ToF16Fallback(v[6]),
+        f32ToF16Fallback(v[7]),
+    )
 
-internal fun f16x8ToF64x8Fallback(v: UShortArray): DoubleArray = doubleArrayOf(
-    f16ToF64Fallback(v[0]),
-    f16ToF64Fallback(v[1]),
-    f16ToF64Fallback(v[2]),
-    f16ToF64Fallback(v[3]),
-    f16ToF64Fallback(v[4]),
-    f16ToF64Fallback(v[5]),
-    f16ToF64Fallback(v[6]),
-    f16ToF64Fallback(v[7]),
-)
+internal fun f16x8ToF64x8Fallback(v: UShortArray): DoubleArray =
+    doubleArrayOf(
+        f16ToF64Fallback(v[0]),
+        f16ToF64Fallback(v[1]),
+        f16ToF64Fallback(v[2]),
+        f16ToF64Fallback(v[3]),
+        f16ToF64Fallback(v[4]),
+        f16ToF64Fallback(v[5]),
+        f16ToF64Fallback(v[6]),
+        f16ToF64Fallback(v[7]),
+    )
 
-internal fun f64x8ToF16x8Fallback(v: DoubleArray): UShortArray = ushortArrayOf(
-    f64ToF16Fallback(v[0]),
-    f64ToF16Fallback(v[1]),
-    f64ToF16Fallback(v[2]),
-    f64ToF16Fallback(v[3]),
-    f64ToF16Fallback(v[4]),
-    f64ToF16Fallback(v[5]),
-    f64ToF16Fallback(v[6]),
-    f64ToF16Fallback(v[7]),
-)
+internal fun f64x8ToF16x8Fallback(v: DoubleArray): UShortArray =
+    ushortArrayOf(
+        f64ToF16Fallback(v[0]),
+        f64ToF16Fallback(v[1]),
+        f64ToF16Fallback(v[2]),
+        f64ToF16Fallback(v[3]),
+        f64ToF16Fallback(v[4]),
+        f64ToF16Fallback(v[5]),
+        f64ToF16Fallback(v[6]),
+        f64ToF16Fallback(v[7]),
+    )
 
 internal fun addF16Fallback(a: UShort, b: UShort): UShort =
     f32ToF16(f16ToF32(a) + f16ToF32(b))
