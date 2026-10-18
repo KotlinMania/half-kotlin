@@ -117,7 +117,7 @@ additional terms or conditions.
 
 ```kotlin
 dependencies {
-    implementation("io.github.kotlinmania:half-kotlin:0.1.0")
+    implementation("io.github.kotlinmania:half-kotlin:3.0.0")
 }
 ```
 
