@@ -9,12 +9,15 @@ public sealed interface SealedHalfFloatSlice
 @kotlin.native.HiddenFromObjC
 public sealed interface SealedHalfBitsSlice
 
+@kotlin.native.HiddenFromObjC
 public fun Array<F16>.f16ArrayReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
 
 public fun List<F16>.f16ListReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<F16>.f16ArrayReinterpretCastMut(): UShortArray = UShortArray(size) { this[it].rawBits }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<F16>.f16ArrayConvertFromF32Slice(src: FloatArray) {
     require(size == src.size) { "destination and source slices have different lengths" }
     for (i in indices) {
@@ -22,6 +25,7 @@ public fun Array<F16>.f16ArrayConvertFromF32Slice(src: FloatArray) {
     }
 }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<F16>.f16ArrayConvertFromF64Slice(src: DoubleArray) {
     require(size == src.size) { "destination and source slices have different lengths" }
     for (i in indices) {
@@ -29,6 +33,7 @@ public fun Array<F16>.f16ArrayConvertFromF64Slice(src: DoubleArray) {
     }
 }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<F16>.f16ArrayConvertToF32Slice(dst: FloatArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
@@ -43,6 +48,7 @@ public fun List<F16>.f16ListConvertToF32Slice(dst: FloatArray) {
     }
 }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<F16>.f16ArrayConvertToF64Slice(dst: DoubleArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
@@ -57,20 +63,25 @@ public fun List<F16>.f16ListConvertToF64Slice(dst: DoubleArray) {
     }
 }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<F16>.f16ArrayToF32Vec(): List<Float> = List(size) { this[it].toF32() }
 
 public fun List<F16>.f16ListToF32Vec(): List<Float> = List(size) { this[it].toF32() }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<F16>.f16ArrayToF64Vec(): List<Double> = List(size) { this[it].toF64() }
 
 public fun List<F16>.f16ListToF64Vec(): List<Double> = List(size) { this[it].toF64() }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<BF16>.bf16ArrayReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
 
 public fun List<BF16>.bf16ListReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<BF16>.bf16ArrayReinterpretCastMut(): UShortArray = UShortArray(size) { this[it].rawBits }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<BF16>.bf16ArrayConvertFromF32Slice(src: FloatArray) {
     require(size == src.size) { "destination and source slices have different lengths" }
     for (i in indices) {
@@ -78,6 +89,7 @@ public fun Array<BF16>.bf16ArrayConvertFromF32Slice(src: FloatArray) {
     }
 }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<BF16>.bf16ArrayConvertFromF64Slice(src: DoubleArray) {
     require(size == src.size) { "destination and source slices have different lengths" }
     for (i in indices) {
@@ -85,6 +97,7 @@ public fun Array<BF16>.bf16ArrayConvertFromF64Slice(src: DoubleArray) {
     }
 }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<BF16>.bf16ArrayConvertToF32Slice(dst: FloatArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
@@ -99,6 +112,7 @@ public fun List<BF16>.bf16ListConvertToF32Slice(dst: FloatArray) {
     }
 }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<BF16>.bf16ArrayConvertToF64Slice(dst: DoubleArray) {
     require(size == dst.size) { "destination and source slices have different lengths" }
     for (i in indices) {
@@ -113,10 +127,12 @@ public fun List<BF16>.bf16ListConvertToF64Slice(dst: DoubleArray) {
     }
 }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<BF16>.bf16ArrayToF32Vec(): List<Float> = List(size) { this[it].toF32() }
 
 public fun List<BF16>.bf16ListToF32Vec(): List<Float> = List(size) { this[it].toF32() }
 
+@kotlin.native.HiddenFromObjC
 public fun Array<BF16>.bf16ArrayToF64Vec(): List<Double> = List(size) { this[it].toF64() }
 
 public fun List<BF16>.bf16ListToF64Vec(): List<Double> = List(size) { this[it].toF64() }
