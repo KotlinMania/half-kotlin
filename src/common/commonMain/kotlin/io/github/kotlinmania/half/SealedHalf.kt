@@ -1,6 +1,6 @@
 package io.github.kotlinmania.half
 
 /**
- * Sealed marker interface for half-precision floating-point types ([F16] and [BF16]).
+ * Sealed marker base class for half-precision floating-point types ([F16] and [BF16]).
  */
-public sealed interface SealedHalf
+public sealed class SealedHalf

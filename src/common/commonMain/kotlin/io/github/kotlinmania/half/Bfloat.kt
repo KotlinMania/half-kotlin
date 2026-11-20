@@ -10,8 +10,8 @@ package io.github.kotlinmania.half
  */
 public data class BF16(
     public val rawBits: UShort = 0u,
-) : Comparable<BF16>,
-    SealedHalf {
+) : SealedHalf(),
+    Comparable<BF16> {
     public val bits: Short
         get() = rawBits.toShort()
 

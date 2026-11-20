@@ -21,8 +21,8 @@ public enum class FpCategory {
  */
 public data class F16(
     public val rawBits: UShort = 0u,
-) : Comparable<F16>,
-    SealedHalf {
+) : SealedHalf(),
+    Comparable<F16> {
     public val bits: Short
         get() = rawBits.toShort()
 

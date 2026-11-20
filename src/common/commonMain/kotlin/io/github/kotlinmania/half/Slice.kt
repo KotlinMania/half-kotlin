@@ -1,8 +1,12 @@
 // port-lint: source slice.rs
+@file:OptIn(kotlin.experimental.ExperimentalObjCRefinement::class)
+
 package io.github.kotlinmania.half
 
+@kotlin.native.HiddenFromObjC
 public sealed interface SealedHalfFloatSlice
 
+@kotlin.native.HiddenFromObjC
 public sealed interface SealedHalfBitsSlice
 
 public fun Array<F16>.f16ArrayReinterpretCast(): UShortArray = UShortArray(size) { this[it].rawBits }
