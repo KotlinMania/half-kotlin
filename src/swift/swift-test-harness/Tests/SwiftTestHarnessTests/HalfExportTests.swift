@@ -19,11 +19,12 @@ struct HalfExportTests {
         #expect(F16.Companion.shared.INFINITY.isInfinite())
         #expect(F16.Companion.shared.PI.toBits() == 0x4248)
 
-        let four = two.plus(rhs: two)
+        let four = two + two
         #expect(four.toF32() == 4.0)
-        #expect(four.minus(rhs: fromBits).toF32() == 3.0)
-        #expect(four.times(rhs: two).toF32() == 8.0)
-        #expect(four.div(rhs: two).toF32() == 2.0)
+        #expect((four - fromBits).toF32() == 3.0)
+        #expect((four * two).toF32() == 8.0)
+        #expect((four / two).toF32() == 2.0)
+        #expect(four > fromBits)
 
         let leBytes = two.toLeBytes()
         #expect(F16.Companion.shared.fromLeBytes(bytes: leBytes) == two)
@@ -43,9 +44,10 @@ struct HalfExportTests {
         #expect(BF16.Companion.shared.INFINITY.isInfinite())
         #expect(BF16.Companion.shared.PI.toBits() == 0x4049)
 
-        let six = two.times(rhs: BF16.Companion.shared.fromF32(value: 3.0))
+        let six = two * BF16.Companion.shared.fromF32(value: 3.0)
         #expect(six.toF32() == 6.0)
-        #expect(six.div(rhs: two).toF32() == 3.0)
+        #expect((six / two).toF32() == 3.0)
+        #expect(six > one)
 
         let beBytes = two.toBeBytes()
         #expect(BF16.Companion.shared.fromBeBytes(bytes: beBytes) == two)
